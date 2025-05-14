@@ -1,0 +1,7 @@
+---
+- name: Installation de dbus-user-session (nécessaire à Docker Rootless)
+  apt:
+    name: dbus-user-session
+    state: present
+    update_cache: yes
+...

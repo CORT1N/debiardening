@@ -1,0 +1,12 @@
+---
+- name: Activation de SELinux
+  command: selinux-activate
+  args:
+    creates: /etc/selinux/config
+  notify: Redémarrage du système
+
+- name: Passage de SELinux en mode enforcing
+  ansible.posix.selinux:
+    policy: default
+    state: enforcing
+...

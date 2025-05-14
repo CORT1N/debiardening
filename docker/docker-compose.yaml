@@ -1,0 +1,27 @@
+---
+services:
+  database:
+    env_file:
+      - .docker.env
+    image: postgres:13.21-alpine3.20
+    networks:
+      - db
+    volumes:
+      - data:/var/lib/mysql
+  proxy:
+    image: nginx:1.27.5-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/var/nginx/nginx.conf:ro
+      - ./logs/nginx:/var/log/nginx
+      - ./certs:/etc/nginx/ssl:ro
+      - ./conf:/etc/nginx/conf.d:ro
+
+
+networks:
+  db:
+
+volumes:
+  data:
+...

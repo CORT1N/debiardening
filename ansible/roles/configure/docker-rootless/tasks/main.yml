@@ -1,0 +1,28 @@
+---
+- name: Désactivation de Docker
+  service:
+    name: docker
+    state: stopped
+    enabled: no
+  become: true
+
+- name: Suppression du socket Docker
+  file:
+    state: absent
+    path: /var/run/docker.sock
+  become: true
+
+- name: Désactivation temporaire de SELinux
+  selinux:
+    state: disabled
+  become: true
+
+- name: Exécution du script d'installation de Docker Rootless
+  command: /usr/bin/dockerd-rootless-setuptool.sh install
+
+- name: Réactivation de SELinux
+  selinux:
+    policy: default
+    state: enforcing
+  become: true
+...

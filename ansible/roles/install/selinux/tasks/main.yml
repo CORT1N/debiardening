@@ -1,0 +1,9 @@
+---
+- name: Installation de SELinux
+  apt:
+    name:
+      - selinux-basics
+      - selinux-policy-default
+    state: latest
+    update_cache: yes
+...

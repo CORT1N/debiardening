@@ -1,0 +1,13 @@
+---
+- name: Copie des fichiers de configuration nécessaires
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - { src: "login.defs.j2",       dest: "/etc/login.defs" }
+    - { src: "common-password.j2",  dest: "/etc/pam.d/common-password" }
+    - { src: "pwquality.conf.j2",   dest: "/etc/security/pwquality.conf" }
+...

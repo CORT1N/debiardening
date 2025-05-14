@@ -1,0 +1,11 @@
+---
+- name: Modification des lignes de configuration concernées
+  template:
+    src: templates/sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: 0600
+  notify:
+    - Redémarrage de SSH
+...

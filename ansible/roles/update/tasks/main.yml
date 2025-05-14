@@ -1,0 +1,7 @@
+---
+- name: Mise à jour des paquets
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+...

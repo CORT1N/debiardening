@@ -1,0 +1,10 @@
+---
+- name: Installation d'Auditd
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  loop:
+    - auditd
+    - audispd-plugins
+...

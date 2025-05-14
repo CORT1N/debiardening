@@ -1,0 +1,6 @@
+---
+- name: Redémarrage d'Auditd
+  service:
+    name: auditd
+    state: restarted
+...

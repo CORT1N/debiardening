@@ -1,0 +1,30 @@
+---
+- name: Hardening du système
+  hosts: debian-to-harden
+  become: true
+  become_method: su
+  roles:
+    - install/openscap
+    # - execute/openscap
+    - update
+    - install/libpam-pwquality
+    - configure/password-policy
+    - configure/users
+    - configure/ssh # Après l'exécution de cette étape, il faut changer l'utilisateur et le mot de passe ansible de root à ansible
+    - install/auditd
+    - configure/auditd
+    # - execute/openscap
+    - install/selinux
+    - configure/selinux
+    # - execute/openscap
+    - install/docker
+    - install/uidmap
+    - install/dbus-user-session
+
+# # Abandonné, si SELinux en enforcing, impossible de le faire fonctionner sans plus de recherches
+# - name: Hardening du système
+#   hosts: debian-to-harden
+#   become_method: su
+#   roles:
+#     - configure/docker-rootless
+...

@@ -1,0 +1,10 @@
+---
+- name: Installation d'OpenScap
+  apt:
+    name:
+      - openscap-common
+      - libopenscap25
+      - openscap-utils
+    state: latest
+    update_cache: yes
+...

@@ -1,0 +1,7 @@
+---
+- name: Installation de uidmap (nécessaire à Docker Rootless)
+  apt:
+    name: uidmap
+    state: present
+    update_cache: yes
+...

@@ -1,0 +1,14 @@
+---
+ansible_user: root
+# ansible_user: ansible
+
+users:
+  - name: ansible
+    state: present
+    password: "{{ hashes.ansible }}"
+    groups: sudo
+    shell: /bin/bash
+
+openscap_profile: xccdf_org.ssgproject.content_profile_standard
+openscap_security_policy: /usr/share/xml/scap/ssg/content/ssg-debian12-ds.xml
+...

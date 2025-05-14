@@ -1,0 +1,20 @@
+---
+- name: Copie et décompression du fichier de politique de sécurité OpenSCAP
+  unarchive:
+    src: debian12-security-policy.tar
+    dest: /
+
+- name: Exécution de l'analyse OpenSCAP
+  shell:
+    cmd: "/usr/bin/oscap xccdf eval --fetch-remote-resources --profile {{ openscap_profile }} --report /tmp/openscap-report.html {{ openscap_security_policy }}"
+  register: result
+  failed_when: result.rc == 1
+
+- name: Get reports
+  fetch:
+    src: "{{ item }}"
+    dest: "../"
+    flat: true
+  with_items:
+    - "/tmp/openscap-report.html"
+...

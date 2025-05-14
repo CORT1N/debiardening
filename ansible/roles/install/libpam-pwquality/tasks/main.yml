@@ -1,0 +1,7 @@
+---
+- name: Installation de libpam-pwquality
+  apt:
+    name: libpam-pwquality
+    state: present
+    update_cache: yes
+...
